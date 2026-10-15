@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyHub - Học lập trình</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101827;
+      color: white;
+    }
+    header {
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #172338;
+    }
+    header h2 { color: #a3f56b; margin: 0; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #172338, #263e54);
+    }
+    .hero h1 { font-size: 44px; margin-bottom: 15px; }
+    .hero h1 span { color: #a3f56b; }
+    .hero p { color: #c3ccda; line-height: 1.8; }
+    .button {
+      display: inline-block;
+      background: #a3f56b;
+      color: #101827;
+      padding: 13px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 18px;
+    }
+    .courses { padding: 45px 8%; }
+    .courses h2 { text-align: center; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .card {
+      background: #1c293c;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #34445a;
+    }
+    .card h3 { color: #a3f56b; }
+    .card p { color: #c3ccda; line-height: 1.7; }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #aab5c5;
+      border-top: 1px solid #34445a;
+    }
+    @media (max-width: 550px) {
+      header { flex-direction: column; gap: 15px; }
+      nav a { margin: 0 8px; font-size: 14px; }
+      .hero h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>&lt;/&gt; StudyHub</h2>
+    <nav>
+      <a href="#home">Trang chủ</a>
+      <a href="#courses">Khóa học</a>
+      <a href="#practice">Luyện tập</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Học lập trình, <span>mở tương lai!</span></h1>
+    <p>Khám phá công nghệ, rèn luyện tư duy<br>
+    và tự xây dựng sản phẩm của riêng bạn.</p>
+    <a class="button" href="#courses">Khám phá khóa học →</a>
+  </section>
+
+  <section class="courses" id="courses">
+    <h2>🚀 Khóa học dành cho bạn</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🌐 HTML & CSS</h3>
+        <p>Học cách xây dựng giao diện và thiết kế trang web từ cơ bản.</p>
+        <a class="button" href="#practice">Bắt đầu học</a>
+      </div>
+      <div class="card">
+        <h3>⚡ JavaScript</h3>
+        <p>Tạo các chức năng tương tác và biến trang web thành ứng dụng.</p>
+        <a class="button" href="#practice">Bắt đầu học</a>
+      </div>
+      <div class="card">
+        <h3>🐍 Python</h3>
+        <p>Làm quen với lập trình và rèn luyện tư duy giải quyết vấn đề.</p>
+        <a class="button" href="#practice">Bắt đầu học</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="courses" id="practice">
+    <h2>💡 Thử thách đầu tiên</h2>
+    <div class="card">
+      <h3>Xin chào, lập trình viên!</h3>
+      <p>Hãy bắt đầu bằng việc học HTML, CSS và JavaScript.</p>
+      <button class="button" onclick="alert('Chúc mừng! Bạn đã bắt đầu hành trình lập trình cùng StudyHub!')">
+        Bắt đầu thử thách
+      </button>
+    </div>
+  </section>
+
+  <footer>
+    StudyHub © 2026 — Học hôm nay, tạo nên ngày mai.
+  </footer>
+</body>
+</html>
