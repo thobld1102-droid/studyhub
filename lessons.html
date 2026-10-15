@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài học lập trình - StudyHub</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#101827;color:white;line-height:1.7}
+header{padding:20px;background:#172338;display:flex;justify-content:space-between}
+a{color:#a3f56b}main{max-width:900px;margin:auto;padding:25px}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+button{padding:12px;border:0;border-radius:7px;background:#a3f56b;cursor:pointer;font-weight:bold}
+.card{background:#1c293c;padding:22px;border-radius:12px;margin-top:20px}
+pre{background:#0b1220;color:#a3f56b;padding:18px;overflow:auto;border-radius:8px}
+label{display:block;padding:8px}
+#result{font-weight:bold;color:#a3f56b}
+</style>
+</head>
+<body>
+<header>
+<strong style="color:#a3f56b">&lt;/&gt; StudyHub</strong>
+<a href="index.html">← Trang chủ</a>
+</header>
+<main>
+<h1>📚 Học lập trình từ cơ bản</h1>
+<p>Chọn bài học, đọc ví dụ và kiểm tra kiến thức của bạn.</p>
+
+<nav>
+<button onclick="showLesson('html')">HTML</button>
+<button onclick="showLesson('css')">CSS</button>
+<button onclick="showLesson('js')">JavaScript</button>
+<button onclick="showLesson('python')">Python</button>
+</nav>
+
+<section class="card">
+<h2 id="title">Bài 1: HTML cơ bản</h2>
+<div id="content"></div>
+</section>
+
+<section class="card">
+<h2>🧠 Câu hỏi kiểm tra</h2>
+<p id="question"></p>
+<div id="answers"></div>
+<button onclick="checkAnswer()">Kiểm tra đáp án</button>
+<p id="result"></p>
+</section>
+</main>
+
+<script>
+const lessons = {
+html: {
+title:"Bài 1: HTML cơ bản",
+content:`<p>HTML dùng để tạo cấu trúc trang web.</p>
+<h3>Ví dụ</h3>
+<pre>&lt;h1&gt;Xin chào!&lt;/h1&gt;
+&lt;p&gt;Đây là trang web đầu tiên.&lt;/p&gt;
+&lt;button&gt;Bấm vào đây&lt;/button&gt;</pre>
+<p><b>Ghi nhớ:</b> h1 là tiêu đề, p là đoạn văn, button là nút bấm.</p>`,
+question:"Thẻ nào dùng để tạo đoạn văn?",
+answers:["&lt;h1&gt;","&lt;p&gt;","&lt;img&gt;"],
+correct:1
+},
+css: {
+title:"Bài 2: CSS cơ bản",
+content:`<p>CSS giúp trang web có màu sắc, kích thước và bố cục đẹp hơn.</p>
+<h3>Ví dụ</h3>
+<pre>h1 {
+  color: green;
+  text-align: center;
+}</pre>
+<p>color đổi màu chữ. text-align căn chỉnh văn bản.</p>`,
+question:"Thuộc tính nào đổi màu chữ?",
+answers:["font-size","color","margin"],
+correct:1
+},
+js: {
+title:"Bài 3: JavaScript",
+content:`<p>JavaScript giúp trang web có tương tác.</p>
+<h3>Ví dụ</h3>
+<pre>let name = "An";
+console.log("Xin chào " + name);
+
+let score = 8;
+if (score >= 5) {
+  console.log("Đạt");
+} else {
+  console.log("Chưa đạt");
+}</pre>
+<p>console.log() hiển thị kết quả trong bảng điều khiển.</p>
+<button onclick="alert('Chúc mừng bạn đã thực hành JavaScript!')">Thử bấm nút</button>`,
+question:"Lệnh nào in kết quả trong JavaScript?",
+answers:["print()","console.log()","echo()"],
+correct:1
+},
+python: {
+title:"Bài 4: Python cơ bản",
+content:`<p>Python là ngôn ngữ lập trình có cú pháp dễ đọc.</p>
+<h3>Ví dụ</h3>
+<pre>name = "An"
+print("Xin chào", name)
+
+score = 8
+if score >= 5:
+    print("Đạt")
+else:
+    print("Chưa đạt")</pre>
+<p>Python dùng print() để hiển thị kết quả. Hãy chú ý thụt lề.</p>`,
+question:"Hàm nào hiển thị nội dung trong Python?",
+answers:["console.log()","print()","show()"],
+correct:1
+}
+};
+
+let current = "html";
+let completed = {};
+
+function showLesson(key) {
+  current = key;
+  const lesson = lessons[key];
+  document.getElementById("title").textContent = lesson.title;
+  document.getElementById("content").innerHTML = lesson.content;
+  document.getElementById("question").textContent = lesson.question;
+  document.getElementById("answers").innerHTML =
+    lesson.answers.map((a,i) =>
+      '<label><input type="radio" name="answer" value="' + i + '"> ' + a + '</label>'
+    ).join("");
+  document.getElementById("result").textContent =
+    completed[key] ? "Bạn đã hoàn thành bài này!" : "";
+}
+
+function checkAnswer() {
+  const selected = document.querySelector('input[name="answer"]:checked');
+  const result = document.getElementById("result");
+  if (!selected) {
+    result.textContent = "Hãy chọn một đáp án trước nhé!";
+    return;
+  }
+  if (Number(selected.value) === lessons[current].correct) {
+    completed[current] = true;
+    result.textContent = "🎉 Chính xác! Bạn đã hoàn thành bài học.";
+    result.style.color = "#a3f56b";
+  } else {
+    result.textContent = "Chưa đúng. Hãy đọc lại bài và thử lại nhé.";
+    result.style.color = "#ffd166";
+  }
+}
+
+showLesson("html");
+</script>
+</body>
+</html>
