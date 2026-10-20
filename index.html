@@ -1,128 +1,369 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudyHub - Học lập trình</title>
+  <meta name="description" content="Website giới thiệu bản thân và hành trình học tập của tôi.">
+  <title>My Portfolio | Xin chào!</title>
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --bg: #fffaf5;
+      --text: #24213b;
+      --muted: #716d83;
+      --purple: #7657ff;
+      --pink: #ff6cab;
+      --yellow: #ffcb57;
+      --blue: #5bc8fa;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #101827;
-      color: white;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 90%); margin: auto; }
+
     header {
-      padding: 22px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,250,245,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #eee7fa;
+    }
+
+    nav {
+      min-height: 72px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background: #172338;
-    }
-    header h2 { color: #a3f56b; margin: 0; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-    }
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #172338, #263e54);
-    }
-    .hero h1 { font-size: 44px; margin-bottom: 15px; }
-    .hero h1 span { color: #a3f56b; }
-    .hero p { color: #c3ccda; line-height: 1.8; }
-    .button {
-      display: inline-block;
-      background: #a3f56b;
-      color: #101827;
-      padding: 13px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 18px;
-    }
-    .courses { padding: 45px 8%; }
-    .courses h2 { text-align: center; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      justify-content: space-between;
       gap: 20px;
-      margin-top: 30px;
     }
-    .card {
-      background: #1c293c;
+
+    .logo { font-size: 23px; font-weight: 900; }
+    .logo span { color: var(--purple); }
+
+    .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .nav-links a { font-size: 14px; font-weight: 650; }
+    .nav-links a:hover { color: var(--purple); }
+
+    .hero {
+      padding: 88px 0 76px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 15%, #ffe0ed 0, transparent 28%),
+        radial-gradient(circle at 88% 20%, #e4ddff 0, transparent 30%),
+        radial-gradient(circle at 60% 100%, #fff0c8 0, transparent 32%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 9px 15px;
+      background: white;
+      border: 1px solid #eee4ff;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--purple);
+    }
+
+    h1 {
+      margin: 22px 0 16px;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #7657ff, #ff65a8, #ff9e50);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .intro { color: var(--muted); line-height: 1.9; font-size: 17px; max-width: 540px; }
+
+    .actions { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 28px; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 21px;
+      border-radius: 13px;
+      font-weight: 750;
+      border: 0;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      font-size: 14px;
+    }
+
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px #7657ff2b; }
+    .primary { background: var(--purple); color: white; }
+    .secondary { background: white; border: 1px solid #e9e1f5; }
+
+    .avatar-wrap { display: grid; place-items: center; position: relative; }
+    .avatar {
+      width: min(300px, 70vw);
+      aspect-ratio: 1;
+      border-radius: 44% 56% 58% 42% / 44% 43% 57% 56%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #b5a4ff, #ffb6d5 55%, #ffdc91);
+      box-shadow: 0 25px 65px #a88aff40;
+      font-size: 125px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .bubble {
+      position: absolute;
+      padding: 12px 16px;
+      border-radius: 15px;
+      background: white;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 8px 30px #34215e12;
+    }
+
+    .bubble.one { top: 12%; right: -2%; }
+    .bubble.two { bottom: 10%; left: -5%; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+
+    section { padding: 76px 0; }
+    .section-head { text-align: center; margin-bottom: 35px; }
+    .eyebrow { color: var(--purple); font-size: 12px; font-weight: 900; letter-spacing: 2px; }
+    h2 { font-size: clamp(28px, 4vw, 39px); margin: 10px 0; letter-spacing: -1px; }
+    .section-head p { color: var(--muted); line-height: 1.8; }
+
+    .about-grid, .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .info-card {
+      background: var(--card);
       padding: 25px;
-      border-radius: 12px;
-      border: 1px solid #34445a;
+      border: 1px solid #eee7f7;
+      border-radius: 22px;
+      transition: transform .2s, box-shadow .2s;
     }
-    .card h3 { color: #a3f56b; }
-    .card p { color: #c3ccda; line-height: 1.7; }
-    footer {
+
+    .info-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px #39216d0d; }
+    .info-card h3 { margin-top: 12px; }
+    .info-card p { color: var(--muted); line-height: 1.8; font-size: 14px; }
+    .emoji { font-size: 31px; }
+
+    .skills { background: #f1edff; }
+    .skill-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .skill {
+      padding: 13px 18px;
+      background: white;
+      border: 1px solid #e5dcff;
+      border-radius: 14px;
+      font-weight: 750;
+    }
+    .skill:nth-child(3n+1) { color: #7657ff; }
+    .skill:nth-child(3n+2) { color: #ed5796; }
+    .skill:nth-child(3n) { color: #1585b4; }
+
+    .project-top {
+      height: 125px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 48px;
+      background: linear-gradient(135deg, #e5ddff, #ffe2ed);
+    }
+    .info-card:nth-child(2) .project-top { background: linear-gradient(135deg, #d7f4ff, #d9e5ff); }
+    .info-card:nth-child(3) .project-top { background: linear-gradient(135deg, #fff0c9, #ffd9e5); }
+    .project-link { color: var(--purple); font-weight: 800; font-size: 14px; }
+
+    .contact-box {
       text-align: center;
-      padding: 25px;
-      color: #aab5c5;
-      border-top: 1px solid #34445a;
+      padding: 46px 25px;
+      border-radius: 28px;
+      background: linear-gradient(120deg, #7657ff, #a65cf5, #ff72aa);
+      color: white;
     }
-    @media (max-width: 550px) {
-      header { flex-direction: column; gap: 15px; }
-      nav a { margin: 0 8px; font-size: 14px; }
-      .hero h1 { font-size: 34px; }
+    .contact-box p { line-height: 1.8; }
+    .contact-box .btn { background: white; color: #6543e9; margin-top: 10px; }
+
+    footer { padding: 26px 0; text-align: center; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 760px) {
+      .hero { padding: 55px 0; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .intro { margin: auto; }
+      .actions { justify-content: center; }
+      .avatar { width: 220px; font-size: 95px; }
+      .bubble.one { right: 3%; }
+      .bubble.two { left: 3%; }
+      .about-grid, .cards { grid-template-columns: 1fr; }
+      nav { padding: 15px 0; flex-direction: column; }
+      .nav-links { justify-content: center; gap: 14px; }
+      .nav-links a { font-size: 13px; }
+      section { padding: 55px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h2>&lt;/&gt; StudyHub</h2>
-    <nav>
-      <a href="#home">Trang chủ</a>
-      <a href="#courses">Khóa học</a>
-      <a href="lessons.html">Luyện tập</a>
+    <nav class="container">
+      <a class="logo" href="#home">My<span>Portfolio.</span></a>
+      <div class="nav-links">
+        <a href="#home">Trang chủ</a>
+        <a href="#about">Về tôi</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#projects">Dự án</a>
+        <a href="#contact">Liên hệ</a>
+      </div>
     </nav>
   </header>
 
-  <section class="hero" id="home">
-    <h1>Học lập trình, <span>mở tương lai!</span></h1>
-    <p>Khám phá công nghệ, rèn luyện tư duy<br>
-    và tự xây dựng sản phẩm của riêng bạn.</p>
-    <a class="button" href="#courses">Khám phá khóa học →</a>
-  </section>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <span class="tag">✨ Chào mừng đến với thế giới của tôi</span>
+          <h1>Xin chào!<br>Tôi là <span class="gradient-text">Thọ</span></h1>
+          <p class="intro">
+            Tôi là học sinh/sinh viên yêu thích khám phá những điều mới,
+            sáng tạo và công nghệ. Đây là nơi ghi lại hành trình học tập,
+            những kỹ năng và dự án của tôi.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#about">Khám phá về tôi ↗</a>
+            <a class="btn secondary" href="#projects">Xem dự án</a>
+          </div>
+        </div>
+        <div class="avatar-wrap">
+          <div class="avatar" role="img" aria-label="Hình minh họa đại diện">🧑‍🎓</div>
+          <div class="bubble one">💡 Luôn tò mò</div>
+          <div class="bubble two">🚀 Không ngừng học hỏi</div>
+        </div>
+      </div>
+    </section>
 
-  <section class="courses" id="courses">
-    <h2>🚀 Khóa học dành cho bạn</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>🌐 HTML & CSS</h3>
-        <p>Học cách xây dựng giao diện và thiết kế trang web từ cơ bản.</p>
-        <a class="button" href="lessons.html">href="lessons.html"</a>
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">ĐÔI ĐIỀU VỀ TÔI</span>
+          <h2>Mỗi ngày một phiên bản tốt hơn 🌱</h2>
+          <p>Tôi tin rằng mỗi trải nghiệm đều giúp mình trưởng thành hơn.</p>
+        </div>
+        <div class="about-grid">
+          <article class="info-card">
+            <div class="emoji">📚</div>
+            <h3>Học tập</h3>
+            <p>Tôi đang học hỏi mỗi ngày, khám phá kiến thức mới và rèn luyện tư duy.</p>
+          </article>
+          <article class="info-card">
+            <div class="emoji">🎨</div>
+            <h3>Sở thích</h3>
+            <p>Tôi thích sáng tạo, tìm hiểu công nghệ, nghe nhạc và khám phá những ý tưởng mới.</p>
+          </article>
+          <article class="info-card">
+            <div class="emoji">🎯</div>
+            <h3>Mục tiêu</h3>
+            <p>Tôi muốn phát triển kỹ năng, hoàn thành những dự án thú vị và biến ý tưởng thành sản phẩm.</p>
+          </article>
+        </div>
       </div>
-      <div class="card">
-        <h3>⚡ JavaScript</h3>
-        <p>Tạo các chức năng tương tác và biến trang web thành ứng dụng.</p>
-        <a class="button" href="lessons.html">href="lessons.html"</a>
-      </div>
-      <div class="card">
-        <h3>🐍 Python</h3>
-        <p>Làm quen với lập trình và rèn luyện tư duy giải quyết vấn đề.</p>
-        <a class="button" href="lessons.html">href="lessons.html"</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="courses" id="practice">
-    <h2>💡 Thử thách đầu tiên</h2>
-    <div class="card">
-      <h3>Xin chào, lập trình viên!</h3>
-      <p>Hãy bắt đầu bằng việc học HTML, CSS và JavaScript.</p>
-      <button class="button" onclick="alert('Chúc mừng! Bạn đã bắt đầu hành trình lập trình cùng StudyHub!')">
-        Bắt đầu thử thách
-      </button>
-    </div>
-  </section>
+    <section class="skills" id="skills">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">NHỮNG ĐIỀU TÔI ĐANG HỌC</span>
+          <h2>Kỹ năng của tôi ⚡</h2>
+          <p>Đây là những kỹ năng tôi đang tìm hiểu và rèn luyện.</p>
+        </div>
+        <div class="skill-list">
+          <span class="skill">🌐 HTML</span>
+          <span class="skill">🎨 CSS</span>
+          <span class="skill">⚡ JavaScript</span>
+          <span class="skill">🧩 Giải quyết vấn đề</span>
+          <span class="skill">🤝 Làm việc nhóm</span>
+          <span class="skill">💬 Giao tiếp</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">NHỮNG ĐIỀU TÔI ĐÃ LÀM</span>
+          <h2>Dự án nổi bật 🚀</h2>
+          <p>Một vài dự án tôi muốn giới thiệu. Bạn có thể thay bằng dự án thật của mình.</p>
+        </div>
+        <div class="cards">
+          <article class="info-card">
+            <div class="project-top">💻</div>
+            <h3>My Portfolio</h3>
+            <p>Website giới thiệu bản thân, sở thích và hành trình học tập.</p>
+            <a class="project-link" href="#home">Đang xem trang này ↗</a>
+          </article>
+          <article class="info-card">
+            <div class="project-top">📖</div>
+            <h3>Dự án học tập</h3>
+            <p>Ghi lại kiến thức, bài tập và những điều mới mà tôi học được.</p>
+            <span class="project-link">Sắp cập nhật ✨</span>
+          </article>
+          <article class="info-card">
+            <div class="project-top">🌈</div>
+            <h3>Ý tưởng tiếp theo</h3>
+            <p>Tôi đang tìm kiếm ý tưởng mới để tiếp tục luyện tập và sáng tạo.</p>
+            <span class="project-link">Coming soon 🚀</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <span class="eyebrow" style="color:#fff0b7">KẾT NỐI VỚI TÔI</span>
+          <h2>Hãy cùng tạo nên điều thú vị! 💌</h2>
+          <p>Bạn có ý tưởng, lời góp ý hoặc muốn trò chuyện? Tôi rất vui được kết nối.</p>
+          <a class="btn" href="mailto:your-email@example.com">Gửi email cho tôi ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    StudyHub © 2026 — Học hôm nay, tạo nên ngày mai.
+    <div class="container">
+      © <span id="year"></span> My Portfolio · Được tạo bằng ❤️ và sự tò mò.
+    </div>
   </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
